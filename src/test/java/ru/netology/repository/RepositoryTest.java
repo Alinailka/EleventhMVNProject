@@ -7,22 +7,21 @@ import ru.netology.domain.Tickets;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RepositoryTest {
-    Repository repo = new Repository();
+    private Repository repo = new Repository();
 
     Tickets first = new Tickets(1, 1000, "MOW", "KZN", 95);
     Tickets second = new Tickets(2, 1000, "DME", "KZN", 95);
     Tickets third = new Tickets(3, 1000, "ZKD", "KZN", 95);
 
     @BeforeEach
-    void preSave() {
+    public void preSave() {
         repo.save(first);
         repo.save(second);
         repo.save(third);
     }
 
     @Test
-    void save() {
-
+    public void save() {
         Tickets[] expected = new Tickets[]{first, second, third};
         Tickets[] actual = repo.getAll();
 
@@ -30,7 +29,7 @@ class RepositoryTest {
     }
 
     @Test
-    void findById() {
+    public void findById() {
         Tickets expected = third;
         Tickets actual = repo.findById(3);
 
@@ -38,7 +37,7 @@ class RepositoryTest {
     }
 
     @Test
-    void findByIdNoOne() {
+    public void findByIdNoOne() {
         Tickets expected = null;
         Tickets actual = repo.findById(4);
 
@@ -46,7 +45,7 @@ class RepositoryTest {
     }
 
     @Test
-    void removeById() {
+    public void removeById() {
         Tickets[] expected = new Tickets[]{first, second};
         Tickets[] actual = repo.removeById(3);
 

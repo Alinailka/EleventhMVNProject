@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ManagerTest {
 
-    Manager manager = new Manager();
+    private Manager manager = new Manager();
 
     Tickets first = new Tickets(1, 1000, "MOW", "KZN", 95);
     Tickets second = new Tickets(2, 2000, "DME", "KZN", 95);
@@ -21,15 +21,14 @@ class ManagerTest {
     Tickets sixth = new Tickets(6, 100, "MOW", "KZN", 95);
 
     @BeforeEach
-    void preAdd() {
+    public void preAdd() {
         manager.add(first);
         manager.add(second);
         manager.add(third);
     }
 
     @Test
-    void findAllOne() {
-
+    public void findAllOne() {
         Tickets[] expected = new Tickets[]{second};
         Tickets[] actual = manager.findAll("DME", "KZN");
 
@@ -37,8 +36,7 @@ class ManagerTest {
     }
 
     @Test
-    void findAllNoOne() {
-
+    public void findAllNoOne() {
         manager.add(fourth);
         Tickets[] expected = new Tickets[0];
         Tickets[] actual = manager.findAll("ZKD", "KZO");
@@ -47,24 +45,13 @@ class ManagerTest {
     }
 
     @Test
-    void findAllMoreOne() {
-        manager.add(fourth);
-        manager.add(fifth);
-        manager.add(sixth);
-        Tickets[] expected = new Tickets[]{first, fifth, sixth};
-        Tickets[] actual = manager.findAll("MOW", "KZN");
-
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void sortByPrice() {
+    public void findAllMoreOne() {
         manager.add(fourth);
         manager.add(fifth);
         manager.add(sixth);
         Tickets[] expected = new Tickets[]{sixth, fifth, first};
-        Tickets[] actual = new Tickets[]{sixth, fifth, first};
-        Arrays.sort(actual);
+        Tickets[] actual = manager.findAll("MOW", "KZN");
+
         assertArrayEquals(expected, actual);
     }
 }

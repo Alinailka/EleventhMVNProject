@@ -29,8 +29,8 @@ public class Repository {
     }
 
     public Tickets[] removeById(int id) {
-        int lenght = tickets.length - 1;
-        Tickets[] tmp = new Tickets[lenght];
+        int length = tickets.length - 1;
+        Tickets[] tmp = new Tickets[length];
         int index = 0;
         for (Tickets ticket : tickets) {
             if (ticket.getId() != id) {
